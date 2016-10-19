@@ -1,0 +1,32 @@
+﻿@model IEnumerable<IdentitySample.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+@foreach (var item in Model)
+{
+    <div class="deptWrap">
+        <div class="deptContent">
+            <h3>@Html.DisplayFor(modelItem => item.UserName)</h3>
+        </div>
+
+        <div class="deptFooterLeft">
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
+        </div>
+        <div class="deptFooterRight">
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </div>
+
+      
+        <div class="clearfix"></div>
+    </div>
+}

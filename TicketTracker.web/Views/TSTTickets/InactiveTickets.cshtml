@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TicketTracker.data.TSTTicket>
+@{
+    ViewBag.Title = "Inactive Tickets";
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>@Html.ActionLink("Active Tickets", "Index")</p>
+
+
+@foreach (var item in Model)
+{
+    <div class="deptWrap" style="height:450px">
+        <div class="deptContent" style="font-weight:bold; color:black">
+            <h3> @Html.DisplayFor(modelItem => item.SubmissionDate)</h3>
+        </div>
+        <br />
+        <p class="text-center">
+            @Html.ActionLink("Details", "Details", new { id = item.TicketID }, new { @class = "details" })
+        </p>
+        <br />
+        <p>
+            <strong>@Html.DisplayName("Status:")</strong><br /> @Html.DisplayFor(modelItem => item.TSTTicketStatus.StatusName)
+        </p>
+        <br />
+        <p>
+            <strong>@Html.DisplayName("Description:")</strong><br />@Html.DisplayFor(modelItem => item.TicketDesc)
+        </p>
+        <br />
+        <p>
+            <strong>@Html.DisplayName("Submitted By:")</strong><br /> @Html.DisplayFor(modelItem => item.TSTEmployee.FullName)
+        </p>
+        <br />
+        <p>
+            <strong>@Html.DisplayName("Assigned Tech:")</strong><br /> @Html.DisplayFor(modelItem => item.TSTEmployee1.FullName)
+        </p>
+        <br />
+        <p>
+            <strong>@Html.DisplayName("Date Completed:")</strong><br />@Html.DisplayFor(modelItem => item.CompletedDate)
+        </p>
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Technician"))
+                {
+            <div class="deptFooterLeft" style="font-weight:bold">
+                @Html.ActionLink("Edit", "Edit", new { id = item.TicketID }) |
+            </div>
+            <div class="deptFooterRight" style="font-weight:bold">
+                @Html.ActionLink("Delete", "Delete", new { id = item.TicketID })
+            </div>
+        }
+    </div>
+}
+<div class="clearfix"></div>
+

@@ -1,0 +1,60 @@
+﻿@model TicketTracker.data.TSTTicket
+
+@{
+    ViewBag.Title = "Ticket Details";
+}
+
+<h2></h2>
+
+
+<h4></h4>
+<hr />
+<div class="deptWrap" style="height:650px; width:600px; align-self: center; ">
+    <div class="deptContent" style="font-weight:bold; ">
+        <h3>@Html.DisplayFor(model => model.SubmissionDate)</h3>
+    </div>
+    <br />
+   
+    <p><strong>@Html.DisplayName("Description:")</strong><br />@Html.DisplayFor(model => model.TicketDesc)</p>
+    <br />
+   
+    <p><strong>@Html.DisplayName("Submitted By:")</strong><br />@Html.DisplayFor(model => model.TSTEmployee.FullName) </p>
+    <br />
+
+    <p><strong style="color:red; font-size:18px">@Html.DisplayFor(model => model.TSTTicketStatus.StatusName)</strong></p>
+    <br />
+
+    <p><strong>@Html.DisplayName("Tech Assigned:")</strong><br />@Html.DisplayFor(model => model.TSTEmployee1.FullName) </p>
+    <br />
+    <p><strong>@Html.DisplayName("Date Resolved:")</strong><br />@Html.DisplayFor(model => model.CompletedDate)</p>
+    <br />
+    <br />
+
+    @*View Notes*@
+
+    <div id="notes">
+        <h4><strong>Tecnician Notes</strong></h4>
+        <br />
+
+        @foreach (var note in Model.TSTTicketNotes)
+            {
+            <p>
+                @note.Notation by <strong>@note.TSTEmployee.fname</strong>
+                on<strong>@string.Format("{0:g}", note.NotationDate)</strong>
+            </p>
+                <hr />
+        }
+
+    </div>
+@if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Technician"))
+{
+    <div class="deptFooterLeft" style="font-weight:bold">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TicketID })
+    </div>
+    <div class="deptFooterRight" style="font-weight:bold">
+        @Html.ActionLink("Back to List", "Index")
+
+    </div>
+}
+
+</div>

@@ -1,0 +1,116 @@
+﻿/*Dept tile example*/
+.deptWrap {
+    /*horizontal tile, float: left*/
+    float: left;
+    border: 1px black solid;
+    padding: 1em;
+    margin: .5em;
+    border-radius: 1em;
+    background-color: cornflowerblue;
+    color: white;
+    width: 31%; /*all cards same width*/
+    height: 215px; /*all cards same height*/
+    position: relative; /*Container element must explicitly be declcared relative
+        to absulutely position child elements   */
+}
+
+.deptContent {
+    text-align: center;
+}
+
+    .deptContent h3 {
+        margin-top: 0;
+        color: black;
+    }
+
+.deptFooterLeft {
+    position: absolute;
+    bottom: .5em;
+    float: left;
+    width: 49%;
+}
+
+.deptFooterRight {
+    position: absolute;
+    bottom: .5em;
+    margin-left: 50%;
+    /*text-align:right; commented out for absolute positioning*/
+    right: .5em;
+}
+
+    .deptWrap a {
+        color: white;
+        font-weight:bold;
+    }
+
+     .deptWrap a:hover {
+     text-decoration: underline !important;
+     }
+.details{
+    font-size: 1.5em;
+}
+li.slider-panel {
+    width: 100%;
+}
+
+input[type="text"], textarea, select, input[type="datetime"], input[type="password"] {
+    max-width: 25em !important;
+}
+
+.checkbox-text {
+    color: black;
+    margin-left: 20%;
+}
+
+.btn-default {
+    color: black;
+    background-color: #f42727;
+    border-color: #ccc;
+}
+
+.footer {
+    background-color: white;
+    color: black;
+}
+
+.loginFooterLeft {
+    position: absolute;
+    bottom: .5em;
+    float: left;
+    /*width: 49%;*/
+}
+
+.loginFooterRight {
+    position: absolute;
+    bottom: .5em;
+    /*margin-left: 50%;*/
+    /*text-align:right; commented out for absolute positioning*/
+    right: .5em;
+}
+
+ .loginFooterLeft a, .loginFooterRight a {
+        color: black;
+        font:bold;
+    }
+
+     .loginFooterLeft a:hover, .loginFooterRight a:hover {
+     text-decoration: underline !important;
+     }
+#notes p{
+    color:black;
+}
+textarea{
+    color:black;
+    font-weight: bold;
+    border-radius:.5em;    
+    min-height: 8em;
+    resize: none;
+
+}
+.widetb{
+    width:98%;
+}
+
+.empImage img {
+    height:70%;
+}

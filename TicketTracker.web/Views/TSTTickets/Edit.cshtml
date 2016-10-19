@@ -1,0 +1,164 @@
+﻿@model TicketTracker.data.TSTTicket
+
+@{
+    ViewBag.Title = "Edit Ticket Details";
+}
+
+<h2></h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.TicketID)
+        @Html.HiddenFor(model => model.SubmissionDate)
+        @Html.HiddenFor(model => model.SubmittedByID)
+        @Html.HiddenFor(model => model.TicketDesc)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StatusID, "Status:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("StatusID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StatusID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubmissionDate, "Submission Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.SubmissionDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubmissionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TSTEmployee.FullName, "Submitted By:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TSTEmployee.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubmittedByID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompletedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompletedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CompletedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TicketDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.TicketDesc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TicketDesc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TSTEmployee.FullName, "Assigned Tech", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AssignedTechID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AssignedTechID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Notes", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="notes">
+
+
+                    @foreach (var note in Model.TSTTicketNotes)
+                {
+                        <p>
+                            @note.Notation by <strong>@note.TSTEmployee.fname</strong>
+                            on<strong>@string.Format("{0:g}", note.NotationDate)</strong>
+                        </p>
+                        <hr />
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Add New Note", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <p><textarea class="widetb" id="noteText"></textarea></p>
+                <p>
+                    <input type="button" value="Add Note"
+                           id="btnAddNote" class="btn btn-success" />
+                </p>
+            </div>
+        </div>
+
+
+
+           
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            $("#btnAddNote").click(function () {
+                //quick test
+                //console.log("You clicked a button!")
+
+                //get the value from the notes being entered and assign it to a variable.
+                var note = $("#noteText").val();
+
+                //when adding the note (during out asynchronous call using AJAX
+                //Asynchronous Javascript and Xml) to the notes div also clear out
+                //the Textarea
+                $.ajax({
+                    //url: "ControllerName/AddTechNote?ticketID=x&note="
+                    url: "/TSTTickets/AddTechNote?ticketiD=@Model.TicketID&note=" + note,
+                    success: function (data) {
+                        //display fo the new note at the bottom of the existing list
+                        //of notes.  No formatting here, the UI has no idea that this
+                        //is happening
+                        $("#notes").append("<p>" + data.TechNotes + " by " +
+                            data.Tech + " on " + data.Date + "<p>");
+
+                        //clear out the notes text area
+                        $("#noteText").val("");
+
+                        //if you get "undefined" as all of your values, your employee
+                        //most likely is NOT attached to AspNetUser.  You MUST have an
+                        //appropriate USERID/Name from identity assigned to your
+                        //employee for this to work.  Same thing for a 500 error in the
+                        //console - it is possible that you have misspellings in teh
+                        //controller/method call.  (url above)
+                        //other things to check: textarea ID and your button ID
+
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#CompletedDate").datepicker();
+        });
+    </script>
+}
+

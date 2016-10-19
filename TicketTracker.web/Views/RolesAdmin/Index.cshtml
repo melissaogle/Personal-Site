@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<h2></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="deptWrap">
+        <div class="deptContent">
+
+            <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+
+
+            @if (User.IsInRole("Admin"))
+            {
+
+                <div class="deptFooterLeft">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </div>
+                <div class="deptFooterRight">                   
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })                    
+                </div>
+            }
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+}
+
+
+

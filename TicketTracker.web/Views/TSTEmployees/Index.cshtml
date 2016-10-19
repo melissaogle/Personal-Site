@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TicketTracker.data.TSTEmployee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<h2></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<p>@Html.ActionLink("Inactive Employees", "InactiveEmployees")</p>
+
+
+@foreach (var item in Model)
+{
+    <div class="deptWrap" style="height:630px">
+        <div class="deptContent" style="font-weight:bold">
+            <p>
+                <h3>
+                    <strong>
+                        @Html.DisplayFor(modelItem => item.fname)
+                        @Html.DisplayFor(modelItem => item.lname)
+                    </strong>
+                </h3>
+
+            </p><br />
+            <p class="empImage"><img src="@Url.Content("~/content/images/employee/" + @item.Image)" /></p>
+            <br /><br />
+            <p>@*@Html.DisplayName("Phone: ")*@@Html.DisplayFor(modelItem => item.phone1)</p>
+            <p>@*@Html.DisplayName("Email: ")*@@Html.DisplayFor(modelItem => item.Email)</p>
+            <br />
+
+            <p style="font-size:18px;color:black">@*@Html.DisplayName("Job Title: ")*@@Html.DisplayFor(modelItem => item.JobTitle)</p>
+            <p style="color:black"> @Html.DisplayName("Dept: ")@Html.DisplayFor(modelItem => item.TSTDepartment.DeptName)</p>
+            <br />
+
+
+
+            @if (User.IsInRole("HRAdmin"))
+                {
+
+                <p>
+                    @*@Html.DisplayName("Address: ")*@@Html.DisplayFor(modelItem => item.address1)
+                    @Html.DisplayFor(modelItem => item.City)
+                    @Html.DisplayFor(modelItem => item.State)
+                    @Html.DisplayFor(modelItem => item.zip)
+                </p>
+                <p>@Html.DisplayName("DOB: ")@Html.DisplayFor(modelItem => item.DOB)</p>
+                <p>@Html.DisplayName("Hire Date: ")@Html.DisplayFor(modelItem => item.HireDate)</p>
+                <p>@Html.DisplayName("Seperation Date: ")@Html.DisplayFor(modelItem => item.SeparationDate)</p>
+
+                <p>@Html.DisplayName("Is Active: ") @Html.DisplayFor(modelItem => item.IsActive)</p>
+
+            }
+        </div>
+
+
+        @*@Html.DisplayFor(modelItem => item.address2)*@
+        @* @Html.DisplayFor(modelItem => item.phone2) *@
+
+        @*Html.DisplayFor(modelItem => item.Notes)
+            @Html.DisplayFor(modelItem => item.UserID)*@
+
+
+        @if (User.IsInRole("HRAdmin"))
+        {
+            <div class="deptFooterLeft" style="font-weight:bold">
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmpID })
+            </div>
+            <div class="deptFooterRight" style="font-weight:bold">
+                @*@Html.ActionLink("Details", "Details", new { id = item.EmpID })*@
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmpID })
+            </div>
+
+        }
+    </div>
+
+}
+<div class="clearfix"></div>
+
+

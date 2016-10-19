@@ -1,0 +1,178 @@
+﻿<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>@*Trade Logistics A Corporate Category Flat Bootstrap Responsive  Website Template | About :: w3layouts*@</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Trade Logistics Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- font files -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Viga' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- /font files -->
+    <!-- css files -->
+    <link href="~/content/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />*@
+    <link href="~/content/css/font-awesome.min.css" rel="stylesheet" />
+    @*<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />*@
+    <link href="~/content/css/typo.css" rel="stylesheet" />
+    @*<link href="css/typo.css" rel="stylesheet" type="text/css" media="all" />*@
+    <link href="~/content/css/info.css" rel="stylesheet" />
+    @*<link href="css/info.css" rel="stylesheet" type="text/css" media="all" />*@
+    <link href="~/content/css/style.css" rel="stylesheet" />
+    @*<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />*@
+    <link href="~/Content/css/CustomStyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <!-- /css files -->
+</head>
+<body>
+    <!-- navigation -->
+    <div class="navbar-wrapper">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-static-top cl-effect-5">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><h1>@*Trade Logistics*@</h1></a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="@Url.Action("Index", "Home")"><span data-hover="Home">Home</span></a><span class="line1"></span></li>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="@Url.Action("Index", "TSTDepartments")"><span data-hover="Departments">Departments</span></a><span class="line1"></span></li>
+                                <li><a href="@Url.Action("Index", "TSTEmployees")"><span data-hover="Employees">Employees</span></a><span class="line1"></span></li>
+                                <li><a href="@Url.Action("Index", "TSTTickets")"><span data-hover="Tickets">Tickets</span></a><span class="line1"></span></li>
+
+                                @*<li><a href="@Url.Action("Index", "TSTEmployees")"><span data-hover="Employee Status">Employee Status</span></a><span class="line1"></span></li>*@
+                            }
+
+
+                            @*@if (User.IsInRole("Admin") || User.IsInRole("Technicion"))*@
+                           
+                                    @*<li><a href="@Url.Action("Index", "TSTTicketStatus")"><span data-hover="Ticket Status">Ticket Status</span></a><span class="line1"></span></li>*@
+                                    @*<li><a href="@Url.Action("Index", "TSTTicketStatus")"><span data-hover="Tech Notes">Tech Notes</span></a><span class="line1"></span></li>*@
+                       
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li><a href="@Url.Action("Index", "RolesAdmin")"><span data-hover="Roles">Roles</span></a><span class="line1"></span></li>
+                                    <li><a href="@Url.Action("Index", "UsersAdmin")"><span data-hover="Users">Users</span></a><span class="line1"></span></li>
+                            }
+
+                            @*<div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Dropdown
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>*@
+
+
+
+
+
+
+                            @*<li><a href="index.html"><span data-hover="Home">Home</span></a></li>
+                                <li class="active"><a href="about.html"><span data-hover="About">About</span></a><span class="line1">/<span></li>
+                                <li><a href="service.html"><span data-hover="Services">Services</span></a><span class="line1">/<span></li>
+                                <li><a href="portfolio.html"><span data-hover="Portfolio">Portfolio</span></a><span class="line1">/<span></li>
+                                <li><a href="typo.html"><span data-hover="Typography">Typography</span></a><span class="line1">/<span></li>
+                                <li><a href="contact.html"><span data-hover="Contact">Contact</span></a><span class="line1">/<span></li>*@
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- /navigation -->
+    <!-- banner section -->
+    <section class="innerpage-banner"></section>
+    @*<!-- /banner section -->*@
+    <!-- Page headers -->
+    @*<section class="innerpage-header">*@
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="breadcrumb text-center">
+                    <li>
+                       
+                        <a href="index.html"></a>
+                    </li>
+                    @*<li class="active"></li>*@
+                </ol>
+                <h2 class="page-header text-center">@ViewBag.Title</h2>
+                @RenderBody()
+            
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    @*</section>*@
+
+
+
+    <!-- footer -->
+    <div class="footer">
+        <p>© 2016 Trade Logistics. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank"></a></p>
+    </div>
+    <!-- footer -->
+    <!-- js files -->
+    <script src="~/Content/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    @*<script src="js/jquery.min.js"></script>*@
+    <script src="~/Content/js/jquery.min.js"></script>
+    @*<script src="js/bootstrap.min.js"></script>*@
+    <script src="~/Content/js/smoothscroll.min.js"></script>
+    @*<script src="js/SmoothScroll.min.js"></script>*@
+    <!-- js for team section -->
+    <script src="~/Content/js/index.js"></script>
+    @*<script src="js/index.js"></script>*@
+    <!-- /js for team section -->
+    <!-- js for banner -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript" src="~/Content/js/zslider-1.0.1.js"></script>
+    <script type="text/javascript">
+        var slider = $('.slider').zslider({
+            imagePanels: $('.slider-panel'),
+            ctrlItems: $('.slider-item'),
+            ctrlItemHoverCls: 'slider-item-selected',
+            //panelHoverShowFlipBtn: false,
+            flipBtn: {
+                container: $('.slider-page'),
+                preBtn: $('.slider-pre'),
+                nextBtn: $('.slider-next')
+            },
+            callbacks: {
+                animate: function (imagePanels, ctrlItems, fromIndex, toIndex) {
+                    return true;
+                }
+            }
+        });
+    </script>
+    <!-- /js for banner -->
+    <!-- /js files -->
+</body>
+</html>		

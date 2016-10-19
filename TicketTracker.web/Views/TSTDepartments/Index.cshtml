@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TicketTracker.data.TSTDepartment>
+
+@{
+    ViewBag.Title = "Departments";
+}
+<br />
+<h2></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>@Html.ActionLink("Inactive Departments", "InactiveDepartments")</p>
+
+
+@foreach (var item in Model)
+{
+    <div class="deptWrap">
+        <div class="deptContent ">
+            <h3><strong>@Html.DisplayFor(modelItem => item.DeptName) </strong></h3>
+        </div>
+            <br />
+       
+            <p><strong>@Html.DisplayFor(modelItem => item.DeptDesc)</strong></p>
+            <br />
+            <p>
+               <strong>@Html.DisplayNameFor(model => model.IsActive) </strong> 
+               <strong>@Html.DisplayFor(modelItem => item.IsActive) </strong> 
+            </p>
+        
+
+        @if (User.IsInRole("HRAdmin") || User.IsInRole("Admin"))
+        {
+        <div class="deptFooterLeft"  style="font-weight:bold">
+            @Html.ActionLink("Edit", "Edit", new { id = item.DeptID })  
+                 
+            </div>
+        <div class="deptFooterRight" style="font-weight:bold">
+            @if(item.TSTEmployees.Count == 0)
+            { 
+           @Html.ActionLink("Delete", "Delete", new { id = item.DeptID })
+            }
+            else
+            {
+                <span style="color:black;font-style:italic;font-weight:bold">In Use</span>
+            }
+        </div>
+        }
+        <div class="clearfix"></div>
+    </div>
+
+   
+
+
+            @*@Html.ActionLink("Details", "Details", new { id = item.DeptID })
+                Because we are displaying all of the data on the index view
+                there is no need to show the details view, we have removed the 
+                button.  
+                
+                To eliminate teh user from MANUALLTY navigating to the Details, 
+                Go to the controller and comment out the details action. *@
+    
+
+    if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+
+      
+     
+            }
+}
+<div class="clearfix"></div>
+

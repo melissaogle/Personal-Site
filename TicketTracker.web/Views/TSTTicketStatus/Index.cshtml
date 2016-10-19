@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TicketTracker.data.TSTTicketStatus>
+
+@{
+    ViewBag.Title = "Ticket Status";
+}
+
+<h2></h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusDesc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.StatusID })
+
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StatusID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StatusID })
+
+                }
+            </td>
+        </tr>
+    }
+
+</table>
